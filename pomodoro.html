@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CampusCare Pomodoro Focus Timer — stay on task with focused work sessions and mindful breaks."
+    />
+    <title>Pomodoro Focus Timer — CampusCare</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/pomodoro.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <nav class="nav container" aria-label="Primary navigation">
+        <a class="brand" href="./index.html" aria-label="CampusCare Home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">CampusCare</span>
+        </a>
+
+        <input class="nav-toggle-input" type="checkbox" id="nav-toggle" />
+        <label class="nav-toggle" for="nav-toggle">
+          <span class="sr-only">Toggle navigation menu</span>
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+        </label>
+
+        <div class="nav-links" id="nav-links">
+          <a class="nav-link" href="./index.html#home">Home</a>
+          <a class="nav-link" href="./index.html#features">Features</a>
+          <a class="nav-link" href="./index.html#resources">Resources</a>
+          <a class="nav-link" href="./index.html#contact">Contact</a>
+          <a class="button button--ghost nav-login" href="./index.html#login">Login</a>
+        </div>
+
+        <div class="nav-cta">
+          <a
+            class="button button--ghost"
+            href="./index.html"
+            style="border-color:#2563EB;color:#2563EB"
+            >Back to Home</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section container pomodoro-page" aria-labelledby="pomodoro-title">
+        <header class="section-header pomodoro-header">
+          <p class="eyebrow">Protect your attention</p>
+          <h1 class="section-title" id="pomodoro-title">Pomodoro Focus Timer</h1>
+          <p class="section-subtitle">
+            Work in focused intervals, take short breaks, and keep a steady study rhythm.
+          </p>
+        </header>
+
+        <div class="pomodoro-card card">
+          <div class="pomodoro-modes" role="tablist" aria-label="Timer modes">
+            <button
+              type="button"
+              class="pomodoro-mode is-active"
+              data-mode="focus"
+              role="tab"
+              aria-selected="true"
+            >
+              Focus
+            </button>
+            <button
+              type="button"
+              class="pomodoro-mode"
+              data-mode="short"
+              role="tab"
+              aria-selected="false"
+            >
+              Short Break
+            </button>
+            <button
+              type="button"
+              class="pomodoro-mode"
+              data-mode="long"
+              role="tab"
+              aria-selected="false"
+            >
+              Long Break
+            </button>
+            <button
+              type="button"
+              class="pomodoro-mode"
+              data-mode="custom"
+              role="tab"
+              aria-selected="false"
+            >
+              Custom
+            </button>
+          </div>
+
+          <div class="pomodoro-custom" id="custom-panel" hidden>
+            <label class="pomodoro-label" for="custom-minutes">Duration (minutes)</label>
+            <div class="pomodoro-custom-row">
+              <input
+                class="pomodoro-input pomodoro-input--minutes"
+                id="custom-minutes"
+                type="text"
+                inputmode="numeric"
+                name="custom-minutes"
+                placeholder="1–120"
+                autocomplete="off"
+                aria-describedby="custom-error"
+              />
+              <button type="button" class="button button--secondary" id="btn-set-custom">
+                Set Timer
+              </button>
+            </div>
+            <p class="pomodoro-error" id="custom-error" role="alert" hidden></p>
+          </div>
+
+          <div class="pomodoro-display">
+            <p class="pomodoro-status" id="timer-status" aria-live="polite">Ready to focus</p>
+            <p class="pomodoro-time" id="timer-display" aria-live="polite">25:00</p>
+          </div>
+
+          <div class="pomodoro-focus-field">
+            <label class="pomodoro-label" for="focus-input">What are you focusing on?</label>
+            <input
+              class="pomodoro-input"
+              id="focus-input"
+              type="text"
+              name="focus"
+              placeholder="e.g. Finish chapter notes"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="pomodoro-controls">
+            <button type="button" class="button button--primary" id="btn-start">Start</button>
+            <button type="button" class="button button--secondary" id="btn-pause" disabled>
+              Pause
+            </button>
+            <button type="button" class="button button--ghost" id="btn-reset">Reset</button>
+          </div>
+
+          <div class="pomodoro-sessions">
+            <span class="pomodoro-sessions-label">Focus sessions completed</span>
+            <span class="pomodoro-sessions-count" id="session-count">0</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="brand brand--footer">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-name">CampusCare</span>
+          </div>
+          <p class="footer-text">
+            Student Wellness & Productivity Portal — calm tools for focus, balance, and better
+            study days.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-title">Navigate</h2>
+          <a class="footer-link" href="./index.html#home">Home</a>
+          <a class="footer-link" href="./index.html#features">Features</a>
+          <a class="footer-link" href="./index.html#resources">About</a>
+          <a class="footer-link" href="./index.html#contact">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-title">Resources</h2>
+          <a class="footer-link" href="./pomodoro.html">Pomodoro Timer</a>
+          <a class="footer-link" href="./index.html#login">Login (Coming soon)</a>
+          <a class="footer-link" href="#">Privacy (Coming soon)</a>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-title">Contact</h2>
+          <p class="footer-text">
+            Email:
+            <a class="footer-link" href="mailto:hello@campuscare.local">hello@campuscare.local</a>
+          </p>
+          <p class="footer-text">Built with HTML, CSS &amp; JavaScript</p>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p class="footer-muted">© 2026 CampusCare. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="./js/pomodoro.js"></script>
+  </body>
+</html>

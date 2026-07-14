@@ -91,16 +91,7 @@
       <!-- HERO -->
       <section class="hero container" id="home" aria-labelledby="hero-title">
         <div class="hero-content">
-          <p class="eyebrow">
-            Built for focus, designed for calm
-            <!-- Inline CSS (Practical requirement: demonstrate inline CSS) -->
-            <!-- This highlight is intentionally inline-styled for the practical -->
-            <span
-              class="eyebrow-highlight"
-              style="background:#06B6D4;color:#111827;padding:0.2rem 0.55rem;border-radius:999px"
-              >Practical 1</span
-            >
-          </p>
+          <p class="eyebrow">Built for focus, designed for calm</p>
 
           <h1 class="hero-title" id="hero-title">Your Daily Companion for Student Wellness</h1>
 
@@ -179,15 +170,18 @@
 
         <div class="grid-3" role="list">
           <article class="card feature-card" role="listitem">
-            <div class="card-icon" aria-hidden="true">🫧</div>
-            <h3 class="card-title">Mood Tracking (with context)</h3>
+            <div class="card-icon" aria-hidden="true">⏱️</div>
+            <h3 class="card-title">Pomodoro Focus Timer</h3>
             <p class="card-text">
-              Capture a quick check-in and what influenced it—sleep, workload, social time. Over time,
-              patterns become visible without overthinking.
+              Stay on task with focused work sessions and short breaks. Choose a mode, set your
+              intention, and let the timer keep your study rhythm steady.
             </p>
             <div class="card-meta">
-              <span class="meta-pill">2-minute check-in</span>
-              <span class="meta-pill meta-pill--accent">Private-first</span>
+              <span class="meta-pill meta-pill--primary">25 · 5 · 15</span>
+              <span class="meta-pill">Focus sessions</span>
+            </div>
+            <div class="hero-actions" style="margin-top: 14px">
+              <a class="button button--primary" href="./pomodoro.html">Try Now</a>
             </div>
           </article>
 
@@ -250,9 +244,9 @@
           <div class="split-content">
             <h2 class="section-title" id="about-title">About CampusCare</h2>
             <p class="section-subtitle">
-              CampusCare is a semester-long project built to become a full student wellness &
-              productivity portal across 10 practicals. Practical 1 focuses on clean HTML structure and
-              professional CSS styling—with room to scale.
+              CampusCare is a student wellness & productivity portal built to support mindful
+              routines, structured study, and quick access to helpful resources—simple, calm, and
+              ready to grow with you.
             </p>
 
             <div class="about-points">
@@ -283,8 +277,8 @@
                 <div>
                   <h3 class="about-title">Ready to expand</h3>
                   <p class="about-text">
-                    Future practicals can add real features (forms, dashboards, backend integration)
-                    without rewriting the UI layer.
+                    New tools like the focus timer can plug in without rewriting the UI layer—so the
+                    portal stays consistent as features grow.
                   </p>
                 </div>
               </div>
@@ -292,7 +286,7 @@
 
             <div class="hero-actions">
               <a class="button button--primary" href="#contact">Contact</a>
-              <a class="button button--ghost" href="./docs/practical1.md">Read Practical 1</a>
+              <a class="button button--ghost" href="./pomodoro.html">Try focus timer</a>
             </div>
           </div>
 
@@ -342,8 +336,7 @@
         <header class="section-header">
           <h2 class="section-title" id="contact-title">Contact</h2>
           <p class="section-subtitle">
-            For the practical submission, this is a static section. In future practicals, this can become
-            a working form with validation and backend integration.
+            Have a question or feedback about CampusCare? Reach out using the details below.
           </p>
         </header>
 
@@ -376,8 +369,8 @@
             <span class="brand-name">CampusCare</span>
           </div>
           <p class="footer-text">
-            Student Wellness & Productivity Portal — built as a semester-long project with a
-            portfolio-quality foundation.
+            Student Wellness & Productivity Portal — calm tools for focus, balance, and better
+            study days.
           </p>
         </div>
 
@@ -391,7 +384,7 @@
 
         <div class="footer-col">
           <h2 class="footer-title">Resources</h2>
-          <a class="footer-link" href="./docs/practical1.md">Practical 1 Manual</a>
+          <a class="footer-link" href="./pomodoro.html">Pomodoro Timer</a>
           <a class="footer-link" href="#login">Login (Coming soon)</a>
           <a class="footer-link" href="#">Privacy (Coming soon)</a>
         </div>
@@ -399,7 +392,7 @@
         <div class="footer-col">
           <h2 class="footer-title">Contact</h2>
           <p class="footer-text">Email: <a class="footer-link" href="mailto:hello@campuscare.local">hello@campuscare.local</a></p>
-          <p class="footer-text">Built with HTML5 + CSS3</p>
+          <p class="footer-text">Built with HTML, CSS &amp; JavaScript</p>
         </div>
       </div>
 
@@ -408,6 +401,5 @@
       </div>
     </footer>
 
-    <!-- Note: No JS frameworks are used. This tiny script-free year is static for Practical 1. -->
   </body>
 </html>
