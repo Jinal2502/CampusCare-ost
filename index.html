@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CampusCare — a student wellness & productivity portal designed to support mindful routines, structured study, and accessible resources."
+    />
+    <title>CampusCare — Student Wellness & Productivity Portal</title>
+
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- External CSS (recommended for real projects) -->
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!--
+      INTERNAL CSS (Practical requirement: demonstrate internal CSS)
+      This <style> block intentionally styles ONE complete section differently:
+      the Statistics section uses a slightly different visual theme and hover behavior.
+      In real-world projects, you'd typically keep these rules in the external stylesheet.
+    -->
+    <style>
+      /* Internal CSS for the Statistics section only */
+      .stats--internal-theme .stat-card {
+        background: linear-gradient(180deg, rgba(37, 99, 235, 0.06), rgba(124, 58, 237, 0.04));
+        border-color: rgba(37, 99, 235, 0.18);
+        box-shadow: 0 18px 44px rgba(17, 24, 39, 0.06);
+      }
+      .stats--internal-theme .stat-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 26px 70px rgba(37, 99, 235, 0.12);
+      }
+      .stats--internal-theme .stat-value {
+        letter-spacing: -0.03em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- Background grid (pure CSS, subtle and premium) -->
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <nav class="nav container" aria-label="Primary navigation">
+        <a class="brand" href="#home" aria-label="CampusCare Home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">CampusCare</span>
+        </a>
+
+        <!--
+          Responsive navigation toggle (no JavaScript):
+          We use a hidden checkbox + label so mobile users can open/close the nav menu.
+        -->
+        <input class="nav-toggle-input" type="checkbox" id="nav-toggle" />
+        <label class="nav-toggle" for="nav-toggle">
+          <span class="sr-only">Toggle navigation menu</span>
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+        </label>
+
+        <div class="nav-links" id="nav-links">
+          <a class="nav-link" href="#home">Home</a>
+          <a class="nav-link" href="#features">Features</a>
+          <a class="nav-link" href="#resources">Resources</a>
+          <a class="nav-link" href="#contact">Contact</a>
+          <a class="button button--ghost nav-login" href="#login">Login</a>
+        </div>
+
+        <div class="nav-cta">
+          <!-- Inline CSS (Practical requirement: demonstrate inline CSS) -->
+          <!-- Intentionally inline-styled to show highest-priority CSS for the practical -->
+          <a
+            class="button button--ghost"
+            href="#login"
+            style="border-color:#2563EB;color:#2563EB"
+            >Login</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero container" id="home" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <p class="eyebrow">
+            Built for focus, designed for calm
+            <!-- Inline CSS (Practical requirement: demonstrate inline CSS) -->
+            <!-- This highlight is intentionally inline-styled for the practical -->
+            <span
+              class="eyebrow-highlight"
+              style="background:#06B6D4;color:#111827;padding:0.2rem 0.55rem;border-radius:999px"
+              >Practical 1</span
+            >
+          </p>
+
+          <h1 class="hero-title" id="hero-title">Your Daily Companion for Student Wellness</h1>
+
+          <p class="hero-subtitle">
+            CampusCare helps you build small, consistent habits—track how you feel, plan what matters,
+            and access support when you need it. Minimal, private, and designed for real student life.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button--primary" href="#features">Explore features</a>
+            <a class="button button--secondary" href="#resources">View resources</a>
+          </div>
+
+          <div class="trust-row" aria-label="Highlights">
+            <div class="trust-pill">
+              <span class="trust-dot trust-dot--success" aria-hidden="true"></span>
+              Calm UI, fast navigation
+            </div>
+            <div class="trust-pill">
+              <span class="trust-dot trust-dot--accent" aria-hidden="true"></span>
+              Designed for daily use
+            </div>
+            <div class="trust-pill">
+              <span class="trust-dot trust-dot--primary" aria-hidden="true"></span>
+              Accessible by default
+            </div>
+          </div>
+        </div>
+
+        <!-- CSS Illustration (no images, no SVG; only HTML + CSS shapes) -->
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-card art-card--top">
+            <div class="art-row">
+              <div class="art-chip art-chip--primary"></div>
+              <div class="art-chip"></div>
+              <div class="art-chip"></div>
+            </div>
+            <div class="art-line art-line--wide"></div>
+            <div class="art-line"></div>
+            <div class="art-line"></div>
+            <div class="art-meter">
+              <div class="art-meter-fill"></div>
+            </div>
+          </div>
+
+          <div class="art-card art-card--bottom">
+            <div class="art-badge">Today</div>
+            <div class="art-mini-grid">
+              <div class="art-mini"></div>
+              <div class="art-mini"></div>
+              <div class="art-mini"></div>
+              <div class="art-mini"></div>
+              <div class="art-mini"></div>
+              <div class="art-mini"></div>
+            </div>
+            <div class="art-progress">
+              <div class="art-progress-fill"></div>
+            </div>
+          </div>
+
+          <div class="art-glow art-glow--primary"></div>
+          <div class="art-glow art-glow--secondary"></div>
+          <div class="art-ring"></div>
+        </div>
+      </section>
+
+      <!-- FEATURES (meaningful, not generic) -->
+      <section class="section container" id="features" aria-labelledby="features-title">
+        <header class="section-header">
+          <h2 class="section-title" id="features-title">Tools that support real routines</h2>
+          <p class="section-subtitle">
+            CampusCare is designed around what students actually do every day: manage energy, protect
+            attention, and find help quickly—without clutter.
+          </p>
+        </header>
+
+        <div class="grid-3" role="list">
+          <article class="card feature-card" role="listitem">
+            <div class="card-icon" aria-hidden="true">🫧</div>
+            <h3 class="card-title">Mood Tracking (with context)</h3>
+            <p class="card-text">
+              Capture a quick check-in and what influenced it—sleep, workload, social time. Over time,
+              patterns become visible without overthinking.
+            </p>
+            <div class="card-meta">
+              <span class="meta-pill">2-minute check-in</span>
+              <span class="meta-pill meta-pill--accent">Private-first</span>
+            </div>
+          </article>
+
+          <article class="card feature-card" role="listitem">
+            <div class="card-icon" aria-hidden="true">🗓️</div>
+            <h3 class="card-title">Study Planner (that respects focus)</h3>
+            <p class="card-text">
+              Plan your day in blocks, not chaos. Prioritize 1–3 outcomes, add breaks, and keep a
+              realistic workload you can actually finish.
+            </p>
+            <div class="card-meta">
+              <span class="meta-pill meta-pill--primary">Time blocks</span>
+              <span class="meta-pill">Gentle reminders</span>
+            </div>
+          </article>
+
+          <article class="card feature-card" role="listitem">
+            <div class="card-icon" aria-hidden="true">🧭</div>
+            <h3 class="card-title">Wellness Resources (always within reach)</h3>
+            <p class="card-text">
+              Quick access to trusted guides, campus contacts, and coping strategies—organized so you
+              can find the right help in seconds.
+            </p>
+            <div class="card-meta">
+              <span class="meta-pill meta-pill--success">24/7 ready</span>
+              <span class="meta-pill">Verified links</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- STATS (internal CSS theme applied here) -->
+      <section class="section container stats stats--internal-theme" aria-labelledby="stats-title">
+        <header class="section-header">
+          <h2 class="section-title" id="stats-title">Small signals, big impact</h2>
+          <p class="section-subtitle">
+            A wellness portal succeeds when it’s used daily—and when it feels supportive, not heavy.
+          </p>
+        </header>
+
+        <div class="grid-3">
+          <article class="card stat-card">
+            <p class="stat-value">5000+</p>
+            <p class="stat-label">Students Supported</p>
+          </article>
+          <article class="card stat-card">
+            <p class="stat-value">92%</p>
+            <p class="stat-label">Positive Feedback</p>
+          </article>
+          <article class="card stat-card">
+            <p class="stat-value">24/7</p>
+            <p class="stat-label">Resources Available</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section container" id="resources" aria-labelledby="about-title">
+        <div class="split">
+          <div class="split-content">
+            <h2 class="section-title" id="about-title">About CampusCare</h2>
+            <p class="section-subtitle">
+              CampusCare is a semester-long project built to become a full student wellness &
+              productivity portal across 10 practicals. Practical 1 focuses on clean HTML structure and
+              professional CSS styling—with room to scale.
+            </p>
+
+            <div class="about-points">
+              <div class="about-point">
+                <div class="about-bullet about-bullet--primary" aria-hidden="true"></div>
+                <div>
+                  <h3 class="about-title">Purposeful by design</h3>
+                  <p class="about-text">
+                    Every component is built with maintainability in mind—semantic sections, reusable
+                    styles, and consistent spacing.
+                  </p>
+                </div>
+              </div>
+
+              <div class="about-point">
+                <div class="about-bullet about-bullet--secondary" aria-hidden="true"></div>
+                <div>
+                  <h3 class="about-title">Accessible foundations</h3>
+                  <p class="about-text">
+                    Proper heading hierarchy, clear focus states, meaningful labels, and contrast-aware
+                    colors are baked in from day one.
+                  </p>
+                </div>
+              </div>
+
+              <div class="about-point">
+                <div class="about-bullet about-bullet--accent" aria-hidden="true"></div>
+                <div>
+                  <h3 class="about-title">Ready to expand</h3>
+                  <p class="about-text">
+                    Future practicals can add real features (forms, dashboards, backend integration)
+                    without rewriting the UI layer.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-actions">
+              <a class="button button--primary" href="#contact">Contact</a>
+              <a class="button button--ghost" href="./docs/practical1.md">Read Practical 1</a>
+            </div>
+          </div>
+
+          <!-- Second CSS Illustration -->
+          <div class="about-art" aria-hidden="true">
+            <div class="about-panel">
+              <div class="about-panel-top">
+                <div class="about-dot"></div>
+                <div class="about-dot"></div>
+                <div class="about-dot"></div>
+              </div>
+              <div class="about-panel-body">
+                <div class="about-kpi">
+                  <div class="about-kpi-label">Focus</div>
+                  <div class="about-kpi-bar">
+                    <div class="about-kpi-fill about-kpi-fill--primary"></div>
+                  </div>
+                </div>
+                <div class="about-kpi">
+                  <div class="about-kpi-label">Energy</div>
+                  <div class="about-kpi-bar">
+                    <div class="about-kpi-fill about-kpi-fill--accent"></div>
+                  </div>
+                </div>
+                <div class="about-kpi">
+                  <div class="about-kpi-label">Balance</div>
+                  <div class="about-kpi-bar">
+                    <div class="about-kpi-fill about-kpi-fill--secondary"></div>
+                  </div>
+                </div>
+                <div class="about-note">
+                  “A good plan is kind, not strict.”
+                  <span class="about-note-mark" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-blob about-blob--one"></div>
+            <div class="about-blob about-blob--two"></div>
+            <div class="about-crosshair"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT (simple, clean) -->
+      <section class="section container" id="contact" aria-labelledby="contact-title">
+        <header class="section-header">
+          <h2 class="section-title" id="contact-title">Contact</h2>
+          <p class="section-subtitle">
+            For the practical submission, this is a static section. In future practicals, this can become
+            a working form with validation and backend integration.
+          </p>
+        </header>
+
+        <div class="contact-card card">
+          <div class="contact-grid">
+            <div class="contact-item">
+              <p class="contact-label">Email</p>
+              <p class="contact-value">
+                <a class="link" href="mailto:hello@campuscare.local">hello@campuscare.local</a>
+              </p>
+            </div>
+            <div class="contact-item">
+              <p class="contact-label">Location</p>
+              <p class="contact-value">Your College Campus</p>
+            </div>
+            <div class="contact-item">
+              <p class="contact-label">Availability</p>
+              <p class="contact-value">Mon–Fri · 9:00–17:00</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="brand brand--footer">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-name">CampusCare</span>
+          </div>
+          <p class="footer-text">
+            Student Wellness & Productivity Portal — built as a semester-long project with a
+            portfolio-quality foundation.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-title">Navigate</h2>
+          <a class="footer-link" href="#home">Home</a>
+          <a class="footer-link" href="#features">Features</a>
+          <a class="footer-link" href="#resources">About</a>
+          <a class="footer-link" href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-title">Resources</h2>
+          <a class="footer-link" href="./docs/practical1.md">Practical 1 Manual</a>
+          <a class="footer-link" href="#login">Login (Coming soon)</a>
+          <a class="footer-link" href="#">Privacy (Coming soon)</a>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-title">Contact</h2>
+          <p class="footer-text">Email: <a class="footer-link" href="mailto:hello@campuscare.local">hello@campuscare.local</a></p>
+          <p class="footer-text">Built with HTML5 + CSS3</p>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p class="footer-muted">© <span id="year">2026</span> CampusCare. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Note: No JS frameworks are used. This tiny script-free year is static for Practical 1. -->
+  </body>
+</html>
