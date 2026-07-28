@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CampusCare Wellness Check-In — log mood, energy, and stress. See your month at a glance."
+    />
+    <title>Wellness Check-In — CampusCare</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/checkin.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <nav class="nav container" aria-label="Primary navigation">
+        <a class="brand" href="./index.html" aria-label="CampusCare Home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">CampusCare</span>
+        </a>
+
+        <input class="nav-toggle-input" type="checkbox" id="nav-toggle" />
+        <label class="nav-toggle" for="nav-toggle">
+          <span class="sr-only">Toggle navigation menu</span>
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+        </label>
+
+        <div class="nav-links" id="nav-links">
+          <a class="nav-link" href="./index.html#home">Home</a>
+          <a class="nav-link" href="./index.html#features">Features</a>
+          <a class="nav-link" href="./checkin.html">Check-In</a>
+          <a class="nav-link" href="./pomodoro.html">Pomodoro</a>
+          <a class="nav-link" href="./index.html#contact">Contact</a>
+        </div>
+
+        <div class="nav-cta">
+          <a
+            class="button button--ghost"
+            href="./index.html"
+            style="border-color:#2563EB;color:#2563EB"
+            >Back to Home</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section container checkin-page" aria-labelledby="checkin-title">
+        <header class="section-header checkin-header">
+          <p class="eyebrow">Know your patterns</p>
+          <h1 class="section-title" id="checkin-title">Wellness Check-In</h1>
+          <p class="section-subtitle">
+            Log how you feel today. Track mood, energy, and stress — then see the month light up.
+          </p>
+        </header>
+
+        <div class="checkin-layout">
+          <!-- LEFT: form -->
+          <div class="checkin-panel card">
+            <!-- Onboarding -->
+            <div id="onboard-panel">
+              <h2 class="checkin-panel-title">Join CampusCare</h2>
+              <p class="checkin-panel-text">
+                A quick profile so we can save your check-ins securely in the database.
+              </p>
+
+              <form id="onboard-form" class="checkin-form" novalidate>
+                <div class="checkin-field">
+                  <label class="pomodoro-label" for="full-name">Full name</label>
+                  <input
+                    class="pomodoro-input checkin-input"
+                    id="full-name"
+                    name="full_name"
+                    type="text"
+                    autocomplete="name"
+                    required
+                    placeholder="e.g. Hiren Rathva"
+                  />
+                </div>
+                <div class="checkin-field">
+                  <label class="pomodoro-label" for="email">Email</label>
+                  <input
+                    class="pomodoro-input checkin-input"
+                    id="email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    required
+                    placeholder="you@college.edu"
+                  />
+                </div>
+                <div class="checkin-field-row">
+                  <div class="checkin-field">
+                    <label class="pomodoro-label" for="course">Course</label>
+                    <input
+                      class="pomodoro-input checkin-input"
+                      id="course"
+                      name="course"
+                      type="text"
+                      placeholder="e.g. BCA"
+                    />
+                  </div>
+                  <div class="checkin-field">
+                    <label class="pomodoro-label" for="year">Year</label>
+                    <input
+                      class="pomodoro-input checkin-input"
+                      id="year"
+                      name="year"
+                      type="text"
+                      placeholder="e.g. 2nd Year"
+                    />
+                  </div>
+                </div>
+                <p class="checkin-error" id="onboard-error" role="alert" hidden></p>
+                <button type="submit" class="button button--primary checkin-submit" id="btn-onboard">
+                  Continue
+                </button>
+              </form>
+            </div>
+
+            <!-- Daily check-in -->
+            <div id="daily-panel" hidden>
+              <div class="checkin-welcome">
+                <h2 class="checkin-panel-title" id="welcome-title">Hi there</h2>
+                <button type="button" class="checkin-switch" id="btn-switch-account">
+                  Switch account
+                </button>
+              </div>
+              <p class="checkin-panel-text">How are you feeling today?</p>
+
+              <form id="daily-form" class="checkin-form" novalidate>
+                <fieldset class="score-fieldset">
+                  <legend class="pomodoro-label">Mood</legend>
+                  <div class="score-row" role="radiogroup" aria-label="Mood 1 to 5" data-score="mood">
+                    <button type="button" class="score-btn" data-value="1" aria-pressed="false">1</button>
+                    <button type="button" class="score-btn" data-value="2" aria-pressed="false">2</button>
+                    <button type="button" class="score-btn" data-value="3" aria-pressed="false">3</button>
+                    <button type="button" class="score-btn" data-value="4" aria-pressed="false">4</button>
+                    <button type="button" class="score-btn is-selected" data-value="5" aria-pressed="true">5</button>
+                  </div>
+                  <p class="score-hint">1 low · 5 great</p>
+                </fieldset>
+
+                <fieldset class="score-fieldset">
+                  <legend class="pomodoro-label">Energy</legend>
+                  <div class="score-row" role="radiogroup" aria-label="Energy 1 to 5" data-score="energy">
+                    <button type="button" class="score-btn" data-value="1" aria-pressed="false">1</button>
+                    <button type="button" class="score-btn" data-value="2" aria-pressed="false">2</button>
+                    <button type="button" class="score-btn is-selected" data-value="3" aria-pressed="true">3</button>
+                    <button type="button" class="score-btn" data-value="4" aria-pressed="false">4</button>
+                    <button type="button" class="score-btn" data-value="5" aria-pressed="false">5</button>
+                  </div>
+                  <p class="score-hint">1 drained · 5 charged</p>
+                </fieldset>
+
+                <fieldset class="score-fieldset">
+                  <legend class="pomodoro-label">Stress</legend>
+                  <div class="score-row" role="radiogroup" aria-label="Stress 1 to 5" data-score="stress">
+                    <button type="button" class="score-btn" data-value="1" aria-pressed="false">1</button>
+                    <button type="button" class="score-btn is-selected" data-value="2" aria-pressed="true">2</button>
+                    <button type="button" class="score-btn" data-value="3" aria-pressed="false">3</button>
+                    <button type="button" class="score-btn" data-value="4" aria-pressed="false">4</button>
+                    <button type="button" class="score-btn" data-value="5" aria-pressed="false">5</button>
+                  </div>
+                  <p class="score-hint">1 calm · 5 very high — colors the calendar</p>
+                </fieldset>
+
+                <div class="checkin-field">
+                  <label class="pomodoro-label" for="note">Note <span class="optional">(optional)</span></label>
+                  <textarea
+                    class="pomodoro-input checkin-input checkin-note"
+                    id="note"
+                    name="note"
+                    rows="3"
+                    maxlength="500"
+                    placeholder="e.g. Felt focused after lab"
+                  ></textarea>
+                </div>
+
+                <p class="checkin-error" id="daily-error" role="alert" hidden></p>
+                <p class="checkin-success" id="daily-success" role="status" hidden></p>
+
+                <button type="submit" class="button button--primary checkin-submit" id="btn-save">
+                  Save today’s check-in
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- RIGHT: calendar -->
+          <div class="calendar-panel card">
+            <div class="calendar-top">
+              <h2 class="checkin-panel-title">Stress calendar</h2>
+              <div class="calendar-nav">
+                <button type="button" class="calendar-nav-btn" id="btn-prev-month" aria-label="Previous month">
+                  ‹
+                </button>
+                <p class="calendar-month" id="calendar-month-label">—</p>
+                <button type="button" class="calendar-nav-btn" id="btn-next-month" aria-label="Next month">
+                  ›
+                </button>
+              </div>
+            </div>
+
+            <p class="calendar-empty-msg" id="calendar-locked">
+              Join or continue with your email to unlock your month view.
+            </p>
+
+            <div id="calendar-active" hidden>
+              <div class="calendar-weekdays" aria-hidden="true">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+              </div>
+              <div class="calendar-grid" id="calendar-grid" role="grid" aria-label="Monthly stress heatmap"></div>
+
+              <div class="calendar-legend">
+                <span class="legend-label">Stress</span>
+                <span class="legend-dot stress-1" title="Calm"></span>
+                <span class="legend-dot stress-2" title="Easy"></span>
+                <span class="legend-dot stress-3" title="Okay"></span>
+                <span class="legend-dot stress-4" title="High"></span>
+                <span class="legend-dot stress-5" title="Very high"></span>
+                <span class="legend-caption">calm → high</span>
+              </div>
+
+              <div class="calendar-stats">
+                <div class="stat-chip">
+                  <span class="stat-chip-label">This month</span>
+                  <span class="stat-chip-value" id="stat-count">0</span>
+                </div>
+                <div class="stat-chip">
+                  <span class="stat-chip-label">Avg stress</span>
+                  <span class="stat-chip-value" id="stat-avg">—</span>
+                </div>
+                <div class="stat-chip">
+                  <span class="stat-chip-label">Latest mood</span>
+                  <span class="stat-chip-value" id="stat-mood">—</span>
+                </div>
+              </div>
+
+              <div class="day-detail" id="day-detail" hidden>
+                <p class="day-detail-date" id="day-detail-date"></p>
+                <p class="day-detail-scores" id="day-detail-scores"></p>
+                <p class="day-detail-note" id="day-detail-note"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="brand brand--footer">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-name">CampusCare</span>
+          </div>
+          <p class="footer-text">
+            Student Wellness & Productivity Portal — calm tools for focus, balance, and better
+            study days.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-title">Navigate</h2>
+          <a class="footer-link" href="./index.html#home">Home</a>
+          <a class="footer-link" href="./index.html#features">Features</a>
+          <a class="footer-link" href="./checkin.html">Check-In</a>
+          <a class="footer-link" href="./index.html#contact">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-title">Resources</h2>
+          <a class="footer-link" href="./pomodoro.html">Pomodoro Timer</a>
+          <a class="footer-link" href="./checkin.html">Wellness Check-In</a>
+          <a class="footer-link" href="#">Privacy (Coming soon)</a>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-title">Contact</h2>
+          <p class="footer-text">
+            Email:
+            <a class="footer-link" href="mailto:hello@campuscare.local">hello@campuscare.local</a>
+          </p>
+          <p class="footer-text">Built with HTML, CSS, JavaScript &amp; PostgreSQL</p>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p class="footer-muted">© 2026 CampusCare. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="./js/checkin.js"></script>
+  </body>
+</html>
