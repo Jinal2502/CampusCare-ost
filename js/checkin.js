@@ -3,6 +3,7 @@
 
   var STORAGE_EMAIL = "campuscareEmail";
   var STORAGE_NAME = "campuscareName";
+  var STORAGE_ID = "campuscareStudentId";
 
   var scores = { mood: 5, energy: 3, stress: 2 };
   var viewYear;
@@ -129,6 +130,7 @@
     welcomeTitle.textContent = "Hi, " + student.full_name.split(" ")[0];
     localStorage.setItem(STORAGE_EMAIL, student.email);
     localStorage.setItem(STORAGE_NAME, student.full_name);
+    if (student.id) localStorage.setItem(STORAGE_ID, String(student.id));
   }
 
   function normalizeCheckinDate(value) {
@@ -240,51 +242,60 @@
       stats.latest_mood != null ? moodLabel(stats.latest_mood) : "—";
   }
 
+  function applyCalendarData(data) {
+    checkinsByDate = {};
+    (data.checkins || []).forEach(function (row) {
+      var key = normalizeCheckinDate(row.checkin_date);
+      checkinsByDate[key] = row;
+    });
+    updateStats(data.stats || { count: 0 });
+    if (selectedDate && !checkinsByDate[selectedDate]) {
+      selectedDate = null;
+      dayDetail.hidden = true;
+    } else if (selectedDate) {
+      showDayDetail(selectedDate);
+    }
+    renderCalendar();
+  }
+
+  function applyTodayPrefill(checkin) {
+    if (!checkin) return;
+    setScore("mood", checkin.mood);
+    setScore("energy", checkin.energy);
+    setScore("stress", checkin.stress);
+    document.getElementById("note").value = checkin.note || "";
+  }
+
+  function studentQuery() {
+    if (currentStudent && currentStudent.id) {
+      return "student_id=" + encodeURIComponent(currentStudent.id);
+    }
+    return "email=" + encodeURIComponent(currentStudent.email);
+  }
+
   function loadMonth() {
     if (!currentStudent) return Promise.resolve();
 
     return api(
-      "/api/checkins?email=" +
-        encodeURIComponent(currentStudent.email) +
+      "/api/checkins?" +
+        studentQuery() +
         "&month=" +
         encodeURIComponent(monthKey(viewYear, viewMonth))
     ).then(function (data) {
-      checkinsByDate = {};
-      (data.checkins || []).forEach(function (row) {
-        var key = normalizeCheckinDate(row.checkin_date);
-        checkinsByDate[key] = row;
-      });
-      updateStats(data.stats || { count: 0 });
-      if (selectedDate && !checkinsByDate[selectedDate]) {
-        selectedDate = null;
-        dayDetail.hidden = true;
-      } else if (selectedDate) {
-        showDayDetail(selectedDate);
-      }
-      renderCalendar();
+      applyCalendarData(data);
     });
   }
 
-  function loadTodayPrefill() {
-    if (!currentStudent) return Promise.resolve();
-
-    return api(
-      "/api/checkins/today?email=" + encodeURIComponent(currentStudent.email)
-    ).then(function (data) {
-      if (!data.checkin) return;
-      var c = data.checkin;
-      setScore("mood", c.mood);
-      setScore("energy", c.energy);
-      setScore("stress", c.stress);
-      document.getElementById("note").value = c.note || "";
-    });
-  }
-
-  function enterSession(student) {
+  function enterSession(student, payload) {
     showDaily(student);
     selectedDate = null;
     dayDetail.hidden = true;
-    return Promise.all([loadMonth(), loadTodayPrefill()]).catch(function (err) {
+    if (payload && payload.checkins) {
+      applyCalendarData(payload);
+      applyTodayPrefill(payload.today_checkin);
+      return Promise.resolve();
+    }
+    return loadMonth().catch(function (err) {
       showError(dailyError, err.message || "Could not load your data.");
     });
   }
@@ -309,20 +320,28 @@
 
     var btn = document.getElementById("btn-onboard");
     btn.disabled = true;
+    btn.textContent = "Continuing…";
 
     api("/api/students", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ full_name: full_name, email: email, course: course, year: year }),
+      body: JSON.stringify({
+        full_name: full_name,
+        email: email,
+        course: course,
+        year: year,
+        month: monthKey(viewYear, viewMonth),
+      }),
     })
       .then(function (data) {
-        return enterSession(data.student);
+        return enterSession(data.student, data);
       })
       .catch(function (err) {
         showError(onboardError, err.message || "Could not save profile.");
       })
       .finally(function () {
         btn.disabled = false;
+        btn.textContent = "Continue";
       });
   });
 
@@ -335,43 +354,76 @@
 
     var btn = document.getElementById("btn-save");
     btn.disabled = true;
+    btn.textContent = "Saving…";
+
+    var today = todayISO();
+    var optimistic = {
+      checkin_date: today,
+      mood: scores.mood,
+      energy: scores.energy,
+      stress: scores.stress,
+      note: document.getElementById("note").value.trim() || null,
+    };
+    checkinsByDate[today] = optimistic;
+    selectedDate = today;
+    applyCalendarData({
+      checkins: Object.keys(checkinsByDate).map(function (k) {
+        return checkinsByDate[k];
+      }),
+      stats: (function () {
+        var rows = Object.keys(checkinsByDate).map(function (k) {
+          return checkinsByDate[k];
+        });
+        var count = rows.length;
+        var avg =
+          count === 0
+            ? null
+            : Math.round((rows.reduce(function (s, r) { return s + r.stress; }, 0) / count) * 10) / 10;
+        return {
+          count: count,
+          avg_stress: avg,
+          latest_mood: optimistic.mood,
+        };
+      })(),
+    });
+    showDayDetail(today);
+    dailySuccess.textContent = "Saved — calendar updated";
+    dailySuccess.hidden = false;
 
     api("/api/checkins", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        student_id: currentStudent.id,
         email: currentStudent.email,
         mood: scores.mood,
         energy: scores.energy,
         stress: scores.stress,
         note: document.getElementById("note").value.trim(),
+        month: monthKey(viewYear, viewMonth),
       }),
     })
       .then(function (data) {
-        var key = normalizeCheckinDate(data.checkin.checkin_date);
-        checkinsByDate[key] = data.checkin;
-        selectedDate = key;
-        showDayDetail(key);
-        dailySuccess.textContent = "Saved — calendar updated";
-        dailySuccess.hidden = false;
-
-        // Refresh stats for current month view
-        if (key.slice(0, 7) === monthKey(viewYear, viewMonth)) {
-          return loadMonth();
+        if (data.checkins) {
+          selectedDate = normalizeCheckinDate(data.checkin.checkin_date);
+          applyCalendarData(data);
+          showDayDetail(selectedDate);
         }
-        renderCalendar();
       })
       .catch(function (err) {
+        dailySuccess.hidden = true;
         showError(dailyError, err.message || "Could not save check-in.");
       })
       .finally(function () {
         btn.disabled = false;
+        btn.textContent = "Save today’s check-in";
       });
   });
 
   btnSwitch.addEventListener("click", function () {
     localStorage.removeItem(STORAGE_EMAIL);
     localStorage.removeItem(STORAGE_NAME);
+    localStorage.removeItem(STORAGE_ID);
     hideError(dailyError);
     dailySuccess.hidden = true;
     showOnboarding();
@@ -411,13 +463,19 @@
 
   var savedEmail = localStorage.getItem(STORAGE_EMAIL);
   if (savedEmail) {
-    api("/api/students?email=" + encodeURIComponent(savedEmail))
+    api(
+      "/api/students?email=" +
+        encodeURIComponent(savedEmail) +
+        "&month=" +
+        encodeURIComponent(monthKey(viewYear, viewMonth))
+    )
       .then(function (data) {
-        return enterSession(data.student);
+        return enterSession(data.student, data);
       })
       .catch(function () {
         localStorage.removeItem(STORAGE_EMAIL);
         localStorage.removeItem(STORAGE_NAME);
+        localStorage.removeItem(STORAGE_ID);
         showOnboarding();
       });
   } else {
