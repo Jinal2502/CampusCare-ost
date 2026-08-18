@@ -49,7 +49,10 @@ CampusCare/
   - Docs: `docs/practical1.md`
 - **Practical 2**: _TBD_ (placeholder)
 - **Practical 3**: _TBD_ (placeholder)
-- **Practical 4**: _TBD_ (placeholder)
+- **Practical 4**: Student wellness data visualization with Pandas + Matplotlib.  
+  - Dataset: `data/student_wellness.csv`
+  - Notebook: `analytics/student_wellness_analytics.ipynb`
+  - Docs: `docs/practical4.md`
 - **Practical 5**: _TBD_ (placeholder)
 - **Practical 6**: _TBD_ (placeholder)
 - **Practical 7**: _TBD_ (placeholder)
@@ -86,4 +89,3 @@ Then open `http://localhost:5500` in your browser.
 - Keep components semantic and reusable.
 - Prefer external CSS for scalability; use internal/inline only when required by a practical.
 - Keep assets organized by type (`images/`, `icons/`).
-

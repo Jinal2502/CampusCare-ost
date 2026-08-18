@@ -515,6 +515,130 @@ a {
 }
 
 /* ------------------------------
+   Wellness Analytics
+-------------------------------- */
+
+.analytics-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.analytics-content {
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.analytics-icon {
+  color: var(--primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.analytics-actions {
+  margin-top: 16px;
+}
+
+.analytics-preview {
+  position: relative;
+  min-height: 210px;
+  border-radius: calc(var(--radius) + 4px);
+  border: 1px solid rgba(229, 231, 235, 0.95);
+  background:
+    linear-gradient(to right, rgba(17, 24, 39, 0.055) 1px, transparent 1px) 0 0 / 42px 42px,
+    linear-gradient(to bottom, rgba(17, 24, 39, 0.055) 1px, transparent 1px) 0 0 / 42px 42px,
+    rgba(252, 252, 253, 0.82);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.analytics-bar {
+  position: absolute;
+  bottom: 28px;
+  width: 34px;
+  border-radius: 12px 12px 6px 6px;
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.9), rgba(6, 182, 212, 0.78));
+}
+
+.analytics-bar--one {
+  left: 34px;
+  height: 82px;
+}
+
+.analytics-bar--two {
+  left: 84px;
+  height: 126px;
+}
+
+.analytics-bar--three {
+  left: 134px;
+  height: 104px;
+}
+
+.analytics-line {
+  position: absolute;
+  right: 28px;
+  top: 58px;
+  width: 112px;
+  height: 68px;
+  border-left: 4px solid var(--secondary);
+  border-bottom: 4px solid var(--secondary);
+  transform: skew(-22deg);
+  opacity: 0.78;
+}
+
+.analytics-dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 99px;
+  background: var(--success);
+  box-shadow: 0 0 0 5px rgba(16, 185, 129, 0.12);
+}
+
+.analytics-dot--one {
+  right: 132px;
+  top: 104px;
+}
+
+.analytics-dot--two {
+  right: 92px;
+  top: 74px;
+}
+
+.analytics-dot--three {
+  right: 48px;
+  top: 92px;
+}
+
+.analytics-page {
+  padding-top: 56px;
+}
+
+.analytics-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.analytics-chart-card {
+  padding: 18px;
+}
+
+.analytics-chart-image {
+  width: 100%;
+  margin-top: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(229, 231, 235, 0.95);
+  background: #fff;
+}
+
+/* ------------------------------
    Split layout (About)
 -------------------------------- */
 
@@ -985,6 +1109,9 @@ a {
   .about-art {
     height: 380px;
   }
+  .analytics-card {
+    grid-template-columns: 1fr;
+  }
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -1057,6 +1184,18 @@ a {
     font-size: 1rem;
   }
 
+  .analytics-content {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-preview {
+    min-height: 180px;
+  }
+
+  .analytics-chart-grid {
+    grid-template-columns: 1fr;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -1069,4 +1208,3 @@ a {
     animation: none !important;
   }
 }
-
