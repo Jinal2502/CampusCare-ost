@@ -13,35 +13,44 @@ This repository is intentionally structured like a real project: consistent desi
 
 ## Technology stack (current)
 
-- **HTML5** (semantic structure)
+- **Django 5** (project + app, templates, forms, URL routing)
+- **HTML5** (semantic structure, now served as Django templates)
 - **CSS3** (Flexbox, Grid, responsive design, transitions)
+- **JavaScript** (Pomodoro timer, Check-In UI)
+- **jQuery** (home-page Today's routine board — Practical 7 DOM operations)
 - **Google Fonts**: Inter
 
-> Note: Practical 1 uses **only HTML and CSS** as required. Future practicals may introduce JavaScript and additional technologies based on syllabus needs.
+> Practical 5 introduces **Django** as the web framework while preserving the existing CampusCare UI.
 
 ## Folder structure
 
 ```text
 CampusCare/
-├── index.html
+├── manage.py
+├── requirements.txt
+├── campuscare/              # Django project
+├── core/                    # Django app (views, forms, templates)
+├── static/                  # CSS, JS, analytics, data (Django static files)
+├── index.html               # Original static pages (kept for earlier practicals)
+├── pomodoro.html
+├── checkin.html
+├── css/                     # Original stylesheets (mirrored in static/css)
+├── js/
 ├── README.md
-├── css/
-│   └── style.css
-├── assets/
-│   ├── images/
-│   └── icons/
-└── docs/
-    └── practical1.md
+├── docs/
+│   ├── practical1.md
+│   ├── practical4.md
+│   └── practical5.md
+└── ...
 ```
 
 ### What each folder is for
 
-- **`index.html`**: main landing page for the portal (Practical 1).
-- **`css/style.css`**: external stylesheet (most styling lives here).
-- **`assets/`**: project assets.
-  - **`assets/images/`**: images used by the project (kept empty for now).
-  - **`assets/icons/`**: icons used by the project (kept empty for now).
+- **`manage.py`**: Django entry point (`runserver`, migrations, etc.).
+- **`core/`**: app with views, the contact form, and Django templates.
+- **`static/`**: CSS, JavaScript, analytics assets, and dataset files served by Django.
 - **`docs/`**: documentation for each practical (one file per practical).
+- Root `*.html` / `css/` / `js/`: originals from earlier practicals; Django serves the template + static versions.
 
 ## Practicals roadmap (placeholders)
 
@@ -53,19 +62,30 @@ CampusCare/
   - Dataset: `data/student_wellness.csv`
   - Notebook: `analytics/student_wellness_analytics.ipynb`
   - Docs: `docs/practical4.md`
-- **Practical 5**: _TBD_ (placeholder)
+- **Practical 5**: Django project setup — convert CampusCare into a Django app with templates, static files, and a contact form.  
+  - Docs: `docs/practical5.md`
 - **Practical 6**: _TBD_ (placeholder)
-- **Practical 7**: _TBD_ (placeholder)
+- **Practical 7**: jQuery DOM manipulation on the home-page Today's routine board (select, text/html, classes, show/hide, append/remove, events).
 - **Practical 8**: _TBD_ (placeholder)
 - **Practical 9**: _TBD_ (placeholder)
 - **Practical 10**: _TBD_ (placeholder)
 
 ## How to run
 
-This is a static website for Practical 1.
+### Django (Practical 5 — recommended)
+
+```bash
+source .venv/bin/activate && python manage.py runserver
+```
+
+Open http://127.0.0.1:8000/
+
+Routes: `/`, `/pomodoro/`, `/checkin/`, `/contact/`
+
+### Static / earlier practicals
 
 - Open `index.html` directly in a browser, **or**
-- Use a simple local server (recommended) to avoid path issues:
+- Use a simple local server:
 
 ```bash
 python3 -m http.server 5500

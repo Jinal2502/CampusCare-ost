@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    {% load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
@@ -18,7 +19,7 @@
     />
 
     <!-- External CSS (recommended for real projects) -->
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
     <!--
       INTERNAL CSS (Practical requirement: demonstrate internal CSS)
@@ -51,7 +52,7 @@
 
     <header class="site-header">
       <nav class="nav container" aria-label="Primary navigation">
-        <a class="brand" href="#home" aria-label="CampusCare Home">
+        <a class="brand" href="{% url 'home' %}#home" aria-label="CampusCare Home">
           <span class="brand-mark" aria-hidden="true"></span>
           <span class="brand-name">CampusCare</span>
         </a>
@@ -67,12 +68,12 @@
         </label>
 
         <div class="nav-links" id="nav-links">
-          <a class="nav-link" href="#home">Home</a>
+          <a class="nav-link" href="{% url 'home' %}#home">Home</a>
           <a class="nav-link" href="#features">Features</a>
           <a class="nav-link" href="#wellness-analytics">Analytics</a>
-          <a class="nav-link" href="./checkin.html">Check-In</a>
-          <a class="nav-link" href="./pomodoro.html">Pomodoro</a>
-          <a class="nav-link" href="#contact">Contact</a>
+          <a class="nav-link" href="{% url 'checkin' %}">Check-In</a>
+          <a class="nav-link" href="{% url 'pomodoro' %}">Pomodoro</a>
+          <a class="nav-link" href="{% url 'contact' %}">Contact</a>
         </div>
 
         <div class="nav-cta">
@@ -182,7 +183,7 @@
               <span class="meta-pill">Focus sessions</span>
             </div>
             <div class="hero-actions" style="margin-top: 14px">
-              <a class="button button--primary" href="./pomodoro.html">Try Now</a>
+              <a class="button button--primary" href="{% url 'pomodoro' %}">Try Now</a>
             </div>
           </article>
 
@@ -198,7 +199,7 @@
               <span class="meta-pill">Stress calendar</span>
             </div>
             <div class="hero-actions" style="margin-top: 14px">
-              <a class="button button--primary" href="./checkin.html">Try Check-In</a>
+              <a class="button button--primary" href="{% url 'checkin' %}">Try Check-In</a>
             </div>
           </article>
 
@@ -267,8 +268,8 @@
                 <span class="meta-pill meta-pill--success">Matplotlib</span>
               </div>
               <div class="hero-actions analytics-actions">
-                <a class="button button--primary" href="./analytics/index.html">View Analytics</a>
-                <a class="button button--ghost" href="./data/student_wellness.csv">Open Dataset</a>
+                <a class="button button--primary" href="{% static 'analytics/index.html' %}">View Analytics</a>
+                <a class="button button--ghost" href="{% static 'data/student_wellness.csv' %}">Open Dataset</a>
               </div>
             </div>
           </div>
@@ -283,6 +284,115 @@
             <div class="analytics-dot analytics-dot--three"></div>
           </div>
         </article>
+      </section>
+
+      <!-- TODAY'S ROUTINE (Practical 7: jQuery DOM, no lecture copy in the UI) -->
+      <section class="section container" id="wellness-tips" aria-labelledby="tips-title">
+        <header class="section-header">
+          <h2 class="section-title" id="tips-title">Today's routine</h2>
+          <p class="section-subtitle">
+            Pick one small action for this study block. Mark it done when you finish, or add your
+            own reminder for later today.
+          </p>
+        </header>
+
+        <div class="tips-layout" id="tips-board" data-checkin-url="{% url 'checkin' %}">
+          <article class="card tips-spotlight">
+            <p class="eyebrow" id="tips-greeting">Good day</p>
+            <h3 class="card-title" id="tips-suggestion-title">Start with one focused session</h3>
+            <p class="card-text" id="tips-suggestion-body">
+              Open the timer, set a single intention, and stop when the session ends.
+            </p>
+            <p class="tips-focus" id="todays-focus">Today's focus is not set yet.</p>
+            <p class="tips-progress-label" id="tips-progress">0 of 4 done</p>
+            <div class="tips-progress" aria-hidden="true">
+              <span class="tips-progress-fill" id="tips-progress-fill"></span>
+            </div>
+            <div class="hero-actions">
+              <button type="button" class="button button--primary" id="btn-next-tip">
+                Another suggestion
+              </button>
+              <button type="button" class="button button--ghost" id="btn-pin-tip">
+                Set as today's focus
+              </button>
+              <a class="button button--secondary" id="tips-action-link" href="{% url 'pomodoro' %}">
+                Open timer
+              </a>
+            </div>
+            <p class="tips-status" id="tips-status" role="status"></p>
+          </article>
+
+          <article class="card tips-panel">
+            <div class="tips-toolbar" role="tablist" aria-label="Filter reminders">
+              <button type="button" class="tips-chip is-active" data-filter="all" id="btn-filter-all">
+                All
+              </button>
+              <button type="button" class="tips-chip" data-filter="focus" id="btn-filter-focus">
+                Focus
+              </button>
+              <button type="button" class="tips-chip" data-filter="wellness" id="btn-filter-wellness">
+                Wellness
+              </button>
+              <button type="button" class="tips-chip" id="btn-hide-done">Hide completed</button>
+              <button type="button" class="tips-chip" id="btn-calm">Calm mode</button>
+            </div>
+
+            <ul class="tips-list" id="tips-list">
+              <li class="tip-item" data-id="pomodoro" data-type="focus" data-href="{% url 'pomodoro' %}">
+                <div class="tip-item-main">
+                  <span class="meta-pill meta-pill--primary">Focus</span>
+                  <span class="tip-item-title">One 25-minute Pomodoro, then a real break</span>
+                </div>
+                <div class="tip-item-actions">
+                  <button type="button" class="tip-done">Done</button>
+                </div>
+              </li>
+              <li class="tip-item" data-id="water" data-type="wellness">
+                <div class="tip-item-main">
+                  <span class="meta-pill meta-pill--success">Wellness</span>
+                  <span class="tip-item-title">Drink water and stretch between lectures</span>
+                </div>
+                <div class="tip-item-actions">
+                  <button type="button" class="tip-done">Done</button>
+                </div>
+              </li>
+              <li class="tip-item" data-id="silence" data-type="focus" data-href="{% url 'pomodoro' %}">
+                <div class="tip-item-main">
+                  <span class="meta-pill meta-pill--primary">Focus</span>
+                  <span class="tip-item-title">Silence notifications for one focus block</span>
+                </div>
+                <div class="tip-item-actions">
+                  <button type="button" class="tip-done">Done</button>
+                </div>
+              </li>
+              <li class="tip-item" data-id="checkin" data-type="wellness" data-href="{% url 'checkin' %}">
+                <div class="tip-item-main">
+                  <span class="meta-pill meta-pill--success">Wellness</span>
+                  <span class="tip-item-title">Log mood, energy, and stress on Check-In</span>
+                </div>
+                <div class="tip-item-actions">
+                  <button type="button" class="tip-done">Done</button>
+                </div>
+              </li>
+            </ul>
+
+            <div class="tips-add">
+              <label class="sr-only" for="tip-input">Add a personal reminder</label>
+              <select class="tips-select" id="tip-type" aria-label="Reminder type">
+                <option value="focus">Focus</option>
+                <option value="wellness">Wellness</option>
+              </select>
+              <input
+                class="tips-input"
+                id="tip-input"
+                type="text"
+                maxlength="80"
+                placeholder="Add a reminder for later today…"
+              />
+              <button type="button" class="button button--primary" id="btn-add-tip">Add</button>
+            </div>
+          </article>
+        </div>
       </section>
 
       <!-- HELP & FAQ -->
@@ -307,7 +417,7 @@
             <span class="meta-pill meta-pill--success">Always available</span>
           </div>
           <div class="hero-actions" style="margin-top: 14px">
-            <a class="button button--primary" href="./faq/index.html">Open Help &amp; FAQ</a>
+            <a class="button button--primary" href="{% url 'faq' %}">Open Help &amp; FAQ</a>
           </div>
         </article>
       </section>
@@ -359,8 +469,8 @@
             </div>
 
             <div class="hero-actions">
-              <a class="button button--primary" href="#contact">Contact</a>
-              <a class="button button--ghost" href="./checkin.html">Try check-in</a>
+              <a class="button button--primary" href="{% url 'contact' %}">Contact</a>
+              <a class="button button--ghost" href="{% url 'checkin' %}">Try check-in</a>
             </div>
           </div>
 
@@ -450,16 +560,16 @@
 
         <div class="footer-col">
           <h2 class="footer-title">Navigate</h2>
-          <a class="footer-link" href="#home">Home</a>
+          <a class="footer-link" href="{% url 'home' %}#home">Home</a>
           <a class="footer-link" href="#features">Features</a>
-          <a class="footer-link" href="./checkin.html">Check-In</a>
-          <a class="footer-link" href="#contact">Contact</a>
+          <a class="footer-link" href="{% url 'checkin' %}">Check-In</a>
+          <a class="footer-link" href="{% url 'contact' %}">Contact</a>
         </div>
 
         <div class="footer-col">
           <h2 class="footer-title">Resources</h2>
-          <a class="footer-link" href="./pomodoro.html">Pomodoro Timer</a>
-          <a class="footer-link" href="./checkin.html">Wellness Check-In</a>
+          <a class="footer-link" href="{% url 'pomodoro' %}">Pomodoro Timer</a>
+          <a class="footer-link" href="{% url 'checkin' %}">Wellness Check-In</a>
           <a class="footer-link" href="#">Privacy (Coming soon)</a>
         </div>
 
@@ -475,5 +585,7 @@
       </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{% static 'js/wellness-tips.js' %}"></script>
   </body>
 </html>

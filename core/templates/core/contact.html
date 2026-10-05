@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Contact CampusCare — send a message to the Student Wellness & Productivity Portal team."
+    />
+    <title>Contact — CampusCare</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/checkin.css' %}" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <nav class="nav container" aria-label="Primary navigation">
+        <a class="brand" href="{% url 'home' %}" aria-label="CampusCare Home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">CampusCare</span>
+        </a>
+
+        <input class="nav-toggle-input" type="checkbox" id="nav-toggle" />
+        <label class="nav-toggle" for="nav-toggle">
+          <span class="sr-only">Toggle navigation menu</span>
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+        </label>
+
+        <div class="nav-links" id="nav-links">
+          <a class="nav-link" href="{% url 'home' %}#home">Home</a>
+          <a class="nav-link" href="{% url 'home' %}#features">Features</a>
+          <a class="nav-link" href="{% url 'checkin' %}">Check-In</a>
+          <a class="nav-link" href="{% url 'pomodoro' %}">Pomodoro</a>
+          <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+        </div>
+
+        <div class="nav-cta">
+          <a
+            class="button button--ghost"
+            href="{% url 'home' %}"
+            style="border-color:#2563EB;color:#2563EB"
+            >Back to Home</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section container checkin-page" aria-labelledby="contact-form-title">
+        <header class="section-header checkin-header">
+          <p class="eyebrow">We are listening</p>
+          <h1 class="section-title" id="contact-form-title">Contact CampusCare</h1>
+          <p class="section-subtitle">
+            Have a question or feedback? Send a message and we'll get back to you.
+          </p>
+        </header>
+
+        <div class="contact-form-wrap card">
+          {% if messages %}
+            {% for message in messages %}
+              <p class="contact-success" role="status">{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+
+          <form method="post" class="checkin-form" novalidate>
+            {% csrf_token %}
+
+            <div class="checkin-field">
+              <label class="checkin-label" for="{{ form.name.id_for_label }}">Name</label>
+              {{ form.name }}
+              {% if form.name.errors %}
+                <p class="contact-error" role="alert">{{ form.name.errors.0 }}</p>
+              {% endif %}
+            </div>
+
+            <div class="checkin-field">
+              <label class="checkin-label" for="{{ form.email.id_for_label }}">Email</label>
+              {{ form.email }}
+              {% if form.email.errors %}
+                <p class="contact-error" role="alert">{{ form.email.errors.0 }}</p>
+              {% endif %}
+            </div>
+
+            <div class="checkin-field">
+              <label class="checkin-label" for="{{ form.message.id_for_label }}">Message</label>
+              {{ form.message }}
+              {% if form.message.errors %}
+                <p class="contact-error" role="alert">{{ form.message.errors.0 }}</p>
+              {% endif %}
+            </div>
+
+            <button type="submit" class="button button--primary">Send Message</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="brand brand--footer">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-name">CampusCare</span>
+          </div>
+          <p class="footer-text">
+            Student Wellness & Productivity Portal — calm tools for focus, balance, and better
+            study days.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-title">Navigate</h2>
+          <a class="footer-link" href="{% url 'home' %}#home">Home</a>
+          <a class="footer-link" href="{% url 'home' %}#features">Features</a>
+          <a class="footer-link" href="{% url 'checkin' %}">Check-In</a>
+          <a class="footer-link" href="{% url 'contact' %}">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-title">Resources</h2>
+          <a class="footer-link" href="{% url 'pomodoro' %}">Pomodoro Timer</a>
+          <a class="footer-link" href="{% url 'checkin' %}">Wellness Check-In</a>
+          <a class="footer-link" href="#">Privacy (Coming soon)</a>
+        </div>
+
+        <div class="footer-col">
+          <h2 class="footer-title">Contact</h2>
+          <p class="footer-text">
+            Email:
+            <a class="footer-link" href="mailto:hello@campuscare.local">hello@campuscare.local</a>
+          </p>
+          <p class="footer-text">Built with Django, HTML, CSS &amp; JavaScript</p>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p class="footer-muted">© 2026 CampusCare. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CampusCare Help & FAQ — answers about the Pomodoro timer, wellness check-in, and healthy study habits."
+    />
+    <title>Help &amp; FAQ — CampusCare</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <nav class="navbar navbar-expand-lg sticky-top faq-navbar" aria-label="Primary navigation">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="../index.html">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">CampusCare</span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#faqNavbar"
+          aria-controls="faqNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="faqNavbar">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../pomodoro.html">Focus Timer</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../checkin.html">Wellness</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#faq">FAQ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main">
+      <section class="hero-section" aria-labelledby="hero-title">
+        <div class="container">
+          <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-lg-7">
+              <p class="eyebrow mb-3">CampusCare Help Center</p>
+              <h1 class="hero-title display-5" id="hero-title">Your Questions, Answered.</h1>
+              <p class="hero-lead mb-4">
+                A short guide to CampusCare’s wellness and productivity tools—Pomodoro sessions,
+                daily check-ins, and habits that keep study days sustainable.
+              </p>
+              <a class="btn btn-primary btn-faq" href="#faq">Browse FAQs</a>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="hero-panel">
+                <p class="hero-panel-label">Jump back into CampusCare</p>
+                <div class="d-grid gap-2">
+                  <a class="hero-link" href="../pomodoro.html">Start a focus session →</a>
+                  <a class="hero-link" href="../checkin.html">Log a wellness check-in →</a>
+                  <a class="hero-link" href="#resources">Open wellness resources →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="container">
+        <div
+          class="alert alert-info faq-alert d-flex flex-column flex-sm-row align-items-sm-center gap-2"
+          role="alert"
+        >
+          <span class="alert-dot" aria-hidden="true"></span>
+          <div>
+            <strong>Wellness reminder:</strong>
+            If you have been studying for more than 50 minutes, pause for water, stretch, or a
+            short walk. Focus works better after a reset.
+          </div>
+        </div>
+      </div>
+
+      <section class="section-block" id="faq" aria-labelledby="faq-title">
+        <div class="container">
+          <header class="section-intro">
+            <h2 class="section-title" id="faq-title">Frequently asked questions</h2>
+            <p class="section-copy">
+              Common questions about CampusCare, focus sessions, and looking after your energy
+              during the semester.
+            </p>
+          </header>
+
+          <div class="accordion faq-accordion" id="faqAccordion">
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingOne">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqOne"
+                  aria-expanded="true"
+                  aria-controls="faqOne"
+                >
+                  What is CampusCare?
+                </button>
+              </h3>
+              <div
+                id="faqOne"
+                class="accordion-collapse collapse show"
+                aria-labelledby="headingOne"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  CampusCare is a student wellness and productivity portal. It brings a calm landing
+                  page, a Pomodoro focus timer, a daily wellness check-in, analytics, and this help
+                  page together so you can manage energy and study time in one place.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingTwo">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqTwo"
+                  aria-expanded="false"
+                  aria-controls="faqTwo"
+                >
+                  How do Pomodoro sessions work?
+                </button>
+              </h3>
+              <div
+                id="faqTwo"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingTwo"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Open <strong>Focus Timer</strong> from the navbar. Pick a mode (typically 25 minutes
+                  of work, 5 minutes of short break, and 15 minutes of long break), set a simple
+                  intention, then start the timer. Work until it rings, then actually take the break—
+                  that is the point of the method.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingThree">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqThree"
+                  aria-expanded="false"
+                  aria-controls="faqThree"
+                >
+                  How can I stay productive without burning out?
+                </button>
+              </h3>
+              <div
+                id="faqThree"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingThree"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Protect attention in short blocks instead of all-night marathons. Use the timer for
+                  one realistic task, keep your phone away during focus, and stop when the session
+                  ends. CampusCare is designed for consistent days, not perfect ones.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingFour">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqFour"
+                  aria-expanded="false"
+                  aria-controls="faqFour"
+                >
+                  How do I track wellness on CampusCare?
+                </button>
+              </h3>
+              <div
+                id="faqFour"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingFour"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Use <strong>Wellness</strong> (Check-In) to log mood, energy, and stress in a few
+                  seconds. Over time the stress calendar and analytics views help you notice patterns—
+                  sleep, screen time, and study load—without turning self-care into extra homework.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingFive">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqFive"
+                  aria-expanded="false"
+                  aria-controls="faqFive"
+                >
+                  Can I use CampusCare on my phone?
+                </button>
+              </h3>
+              <div
+                id="faqFive"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingFive"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Yes. CampusCare is built to work on phones, tablets, and laptops. On a smaller
+                  screen, use the menu button to reach Home, Focus Timer, Wellness, and FAQ. The
+                  help cards stack so they stay readable.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="headingSix">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faqSix"
+                  aria-expanded="false"
+                  aria-controls="faqSix"
+                >
+                  Where can I get more support if I am struggling?
+                </button>
+              </h3>
+              <div
+                id="faqSix"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingSix"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  CampusCare is a study companion, not a clinical service. If stress feels unmanageable,
+                  talk to a trusted friend, a campus counsellor, or a local helpline. You can also use
+                  the Contact page on CampusCare for project feedback—not for emergencies.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block section-block--tight" id="resources" aria-labelledby="resources-title">
+        <div class="container">
+          <header class="section-intro">
+            <h2 class="section-title" id="resources-title">Wellness resources</h2>
+            <p class="section-copy">
+              Small, practical reminders you can use alongside the focus timer and daily check-in.
+            </p>
+          </header>
+
+          <div class="row g-3 g-lg-4">
+            <div class="col-12 col-md-6 col-xl-3">
+              <article class="card h-100 resource-card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="resource-icon" aria-hidden="true">SL</span>
+                    <span class="badge rounded-pill cc-badge-primary">Sleep</span>
+                  </div>
+                  <h3 class="card-title h5">Sleep</h3>
+                  <p class="card-text">
+                    Aim for a regular wind-down. Late-night scrolling often shows up the next day as
+                    higher stress on your check-in.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <div class="col-12 col-md-6 col-xl-3">
+              <article class="card h-100 resource-card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="resource-icon" aria-hidden="true">FO</span>
+                    <span class="badge rounded-pill cc-badge-accent">Focus</span>
+                  </div>
+                  <h3 class="card-title h5">Focus</h3>
+                  <p class="card-text">
+                    One timer, one task. Use 25-minute blocks on the Pomodoro page when lectures and
+                    assignments compete for attention.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <div class="col-12 col-md-6 col-xl-3">
+              <article class="card h-100 resource-card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="resource-icon" aria-hidden="true">ST</span>
+                    <span class="badge rounded-pill cc-badge-warning">Stress</span>
+                  </div>
+                  <h3 class="card-title h5">Stress management</h3>
+                  <p class="card-text">
+                    Name the load on your check-in instead of ignoring it. A short walk or a long
+                    break after two focus cycles is still productive.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <div class="col-12 col-md-6 col-xl-3">
+              <article class="card h-100 resource-card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="resource-icon" aria-hidden="true">HA</span>
+                    <span class="badge rounded-pill cc-badge-success">Habits</span>
+                  </div>
+                  <h3 class="card-title h5">Healthy study habits</h3>
+                  <p class="card-text">
+                    Plan fewer tasks than you think you can finish. Consistency on CampusCare beats
+                    a packed list you will abandon by Thursday.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block" id="more-help" aria-labelledby="help-title">
+        <div class="container">
+          <div class="help-panel">
+            <div class="row align-items-center g-3">
+              <div class="col-lg-8">
+                <h2 class="section-title mb-2" id="help-title">Need more help?</h2>
+                <p class="section-copy mb-0">
+                  If you are stuck, tired, or unsure where to start, open a short reminder and pick
+                  one next step—a break, a focus session, or talking to someone you trust.
+                </p>
+              </div>
+              <div class="col-lg-4 text-lg-end">
+                <button
+                  type="button"
+                  class="btn btn-primary btn-faq"
+                  data-bs-toggle="modal"
+                  data-bs-target="#helpModal"
+                >
+                  Get a next step
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div
+      class="modal fade"
+      id="helpModal"
+      tabindex="-1"
+      aria-labelledby="helpModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="helpModalLabel">Take a kind next step</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              You do not have to solve everything in one sitting. Step away for a few minutes, drink
+              water, then come back to a single Pomodoro on the Focus Timer.
+            </p>
+            <p class="mb-0">
+              If academic stress feels heavier than a study block can fix, reach out to a campus
+              counsellor or someone you trust. CampusCare can support routines; people support you.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <a class="btn btn-primary btn-faq" href="../pomodoro.html">Go to Focus Timer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="faq-footer">
+      <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between gap-3">
+          <div class="d-flex align-items-center gap-2">
+            <span class="brand-mark brand-mark--sm" aria-hidden="true"></span>
+            <div>
+              <strong class="brand-name">CampusCare</strong>
+              <p class="footer-text mb-0">Student Wellness &amp; Productivity Portal</p>
+            </div>
+          </div>
+          <p class="footer-muted mb-0">© 2026 CampusCare. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
