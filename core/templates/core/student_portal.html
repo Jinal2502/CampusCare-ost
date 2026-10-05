@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CampusCare Student Portal — add, view, edit, and delete student records stored in SQLite."
+    />
+    <title>Student Portal — CampusCare</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/portal.css' %}" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <nav class="nav container" aria-label="Primary navigation">
+        <a class="brand" href="{% url 'home' %}" aria-label="CampusCare Home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">CampusCare</span>
+        </a>
+
+        <input class="nav-toggle-input" type="checkbox" id="nav-toggle" />
+        <label class="nav-toggle" for="nav-toggle">
+          <span class="sr-only">Toggle navigation menu</span>
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+        </label>
+
+        <div class="nav-links" id="nav-links">
+          <a class="nav-link" href="{% url 'home' %}#home">Home</a>
+          <a class="nav-link" href="{% url 'home' %}#features">Features</a>
+          <a class="nav-link" href="{% url 'checkin' %}">Check-In</a>
+          <a class="nav-link" href="{% url 'pomodoro' %}">Pomodoro</a>
+          <a class="nav-link" href="{% url 'student_portal' %}">Student Portal</a>
+        </div>
+
+        <div class="nav-cta">
+          <a
+            class="button button--ghost"
+            href="{% url 'home' %}"
+            style="border-color:#2563EB;color:#2563EB"
+            >Back to Home</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section container portal-page" aria-labelledby="portal-title">
+        <div class="portal-heading">
+          <div>
+            <p class="eyebrow">Practical 9 · SQLite</p>
+            <h1 class="section-title" id="portal-title">Student Records</h1>
+            <p class="portal-kicker" id="portal-user">Student records</p>
+          </div>
+          <button type="button" class="button button--primary" id="add-student">Add Student</button>
+        </div>
+
+        <div class="portal-stats">
+          <article class="card portal-stat">
+            <p class="portal-stat-label">Total students</p>
+            <p class="portal-stat-value" id="stat-total">0</p>
+          </article>
+          <article class="card portal-stat">
+            <p class="portal-stat-label">Average marks</p>
+            <p class="portal-stat-value" id="stat-marks">—</p>
+          </article>
+          <article class="card portal-stat">
+            <p class="portal-stat-label">Average attendance</p>
+            <p class="portal-stat-value" id="stat-attendance">—</p>
+          </article>
+        </div>
+
+        <div class="card portal-table-wrap">
+          <div class="portal-toolbar">
+            <h2>All students</h2>
+            <p class="portal-kicker">Loaded from SQLite through <code>/students</code></p>
+          </div>
+          <table class="portal-table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Department</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Attendance</th>
+                <th scope="col">Marks</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="student-rows"></tbody>
+          </table>
+          <p class="portal-empty" id="student-empty" hidden>No students yet. Use Add Student to create one.</p>
+        </div>
+
+        <p class="portal-note">
+          Records are stored in <code>database/students.db</code>. Refreshing this page reloads them from SQLite.
+        </p>
+      </section>
+    </main>
+
+    <dialog class="portal-dialog" id="student-dialog" aria-labelledby="student-dialog-title">
+      <form class="dialog-body" id="student-form" method="dialog">
+        <div>
+          <h2 id="student-dialog-title">Add student</h2>
+          <p>This writes a row in the students table.</p>
+        </div>
+        <div class="portal-form-grid">
+          <div class="portal-field portal-field--wide">
+            <label for="student-name">Name</label>
+            <input id="student-name" name="name" type="text" required maxlength="120" />
+          </div>
+          <div class="portal-field portal-field--wide">
+            <label for="student-email">Email</label>
+            <input id="student-email" name="email" type="email" required maxlength="120" />
+          </div>
+          <div class="portal-field portal-field--wide">
+            <label for="student-department">Department</label>
+            <input id="student-department" name="department" type="text" required maxlength="80" />
+          </div>
+          <div class="portal-field">
+            <label for="student-semester">Semester</label>
+            <input id="student-semester" name="semester" type="number" min="1" max="8" step="1" required />
+          </div>
+          <div class="portal-field">
+            <label for="student-attendance">Attendance (%)</label>
+            <input id="student-attendance" name="attendance" type="number" min="0" max="100" step="0.1" required />
+          </div>
+          <div class="portal-field portal-field--wide">
+            <label for="student-marks">Marks</label>
+            <input id="student-marks" name="marks" type="number" min="0" max="100" step="0.1" required />
+          </div>
+        </div>
+        <p class="contact-error" id="student-form-error" role="alert" hidden></p>
+        <div class="dialog-actions">
+          <button type="button" class="button button--secondary" id="student-cancel">Cancel</button>
+          <button type="submit" class="button button--primary" id="student-save">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="portal-dialog" id="delete-dialog" aria-labelledby="delete-title">
+      <div class="dialog-body">
+        <h2 id="delete-title">Delete student</h2>
+        <p id="delete-text">This removes the row from SQLite.</p>
+        <div class="dialog-actions">
+          <button type="button" class="button button--secondary" id="delete-cancel">Cancel</button>
+          <button type="button" class="button button--danger" id="delete-confirm">Delete</button>
+        </div>
+      </div>
+    </dialog>
+
+    <p class="portal-toast" id="portal-toast" role="status" hidden></p>
+
+    <script src="{% static 'js/portal.js' %}"></script>
+    <script>
+      document.getElementById("student-cancel").addEventListener("click", function () {
+        document.getElementById("student-dialog").close();
+      });
+      document.getElementById("delete-cancel").addEventListener("click", function () {
+        document.getElementById("delete-dialog").close();
+      });
+    </script>
+  </body>
+</html>

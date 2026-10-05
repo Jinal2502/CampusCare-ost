@@ -1,0 +1,42 @@
+student_id,student_name,department,attendance,study_hours,assignments_completed,internal_marks,final_marks
+STU001,Aarav Shah,Computer Science,92,5.5,8,38,86
+STU002,Diya Patel,Computer Science,88,4.5,8,36,82
+STU003,Kabir Mehta,Computer Science,95,6.0,9,40,91
+STU004,Ananya Iyer,Computer Science,81,3.5,7,32,74
+STU005,Rohan Desai,Computer Science,76,3.0,6,30,68
+STU006,Meera Nair,Computer Science,90,5.0,8,37,85
+STU007,Vivaan Joshi,Computer Science,84,4.0,7,34,78
+STU008,Sara Khan,Computer Science,70,2.5,5,28,61
+STU009,Arjun Reddy,Computer Science,97,6.5,9,39,94
+STU010,Ishita Gupta,Computer Science,79,3.5,7,33,72
+STU011,Neel Kapoor,Information Technology,86,4.5,8,35,80
+STU012,Pooja Verma,Information Technology,,4.0,7,33,75
+STU013,Aditya Rao,Information Technology,91,5.0,8,37,84
+STU014,Kiara Bose,Information Technology,73,2.5,6,29,64
+STU015,Harsh Malhotra,Information Technology,88,4.5,8,36,81
+STU016,Sneha Kulkarni,Information Technology,82,3.5,7,32,73
+STU017,Dev Sharma,Information Technology,67,2.0,5,26,58
+STU018,Myra Singh,Information Technology,,3.0,6,30,69
+STU019,Yash Agarwal,Information Technology,94,5.5,9,38,88
+STU020,Tanvi Choudhary,Information Technology,77,3.0,6,31,70
+STU021,Rahul Banerjee,Electronics,85,4.0,7,34,77
+STU022,Aisha Qureshi,Electronics,89,4.5,8,35,82
+STU023,Nikhil Pandey,Electronics,74,,6,30,66
+STU024,Lavanya Krishnan,Electronics,93,5.5,8,37,87
+STU025,Omkar Patil,Electronics,80,3.5,7,32,71
+STU026,Rhea D'Souza,Electronics,68,2.0,5,27,60
+STU027,Farhan Ali,Electronics,87,4.5,8,35,79
+STU028,Saanvi Mishra,Electronics,91,5.0,8,36,83
+STU029,Kunal Bhatt,Electronics,72,2.5,6,29,63
+STU030,Priya Menon,Electronics,83,4.0,7,33,76
+STU031,Ayaan Sheikh,Mechanical,78,3.0,,31,70
+STU032,Nisha Yadav,Mechanical,64,2.0,4,25,55
+STU033,Kartik Jain,Mechanical,86,4.5,7,34,78
+STU034,Anika Paul,Mechanical,90,5.0,8,36,84
+STU035,Rudra Chauhan,Mechanical,71,2.5,5,28,62
+STU036,Simran Kaur,Mechanical,82,3.5,7,32,
+STU037,Veer Saxena,Mechanical,75,3.0,6,30,67
+STU038,Zoya Hussain,Mechanical,88,4.5,8,35,80
+STU039,Manav Trivedi,Mechanical,69,2.0,5,27,59
+STU040,Ira Fernandes,Mechanical,84,4.0,7,33,76
+STU007,Vivaan Joshi,Computer Science,84,4.0,7,34,78

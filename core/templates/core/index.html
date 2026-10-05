@@ -20,6 +20,7 @@
 
     <!-- External CSS (recommended for real projects) -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/portal.css' %}" />
 
     <!--
       INTERNAL CSS (Practical requirement: demonstrate internal CSS)
@@ -71,20 +72,23 @@
           <a class="nav-link" href="{% url 'home' %}#home">Home</a>
           <a class="nav-link" href="#features">Features</a>
           <a class="nav-link" href="#wellness-analytics">Analytics</a>
+          <a class="nav-link" href="#performance">Performance</a>
           <a class="nav-link" href="{% url 'checkin' %}">Check-In</a>
           <a class="nav-link" href="{% url 'pomodoro' %}">Pomodoro</a>
           <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-        </div>
+          
 
         <div class="nav-cta">
           <!-- Inline CSS (Practical requirement: demonstrate inline CSS) -->
           <!-- Intentionally inline-styled to show highest-priority CSS for the practical -->
-          <a
+          <button
+            type="button"
             class="button button--ghost"
-            href="#login"
+            data-open-auth
             style="border-color:#2563EB;color:#2563EB"
-            >Login</a
           >
+            Login / Sign Up
+          </button>
         </div>
       </nav>
     </header>
@@ -395,6 +399,120 @@
         </div>
       </section>
 
+      <!-- STUDENT PERFORMANCE ANALYTICS -->
+      <section
+        class="section container"
+        id="performance"
+        data-performance-url="{% static 'data/student_performance_processed.json' %}"
+        aria-labelledby="performance-title"
+      >
+        <header class="section-header">
+          <h2 class="section-title" id="performance-title">Student Performance Analytics</h2>
+          <p class="section-subtitle">Turn student data into clear academic insights.</p>
+        </header>
+
+        <div class="perf-metrics" id="perf-metrics">
+          <article class="card perf-metric">
+            <p class="perf-metric-label">Total Students</p>
+            <p class="perf-metric-value" id="perf-total">—</p>
+            <p class="perf-metric-note" id="perf-total-note">Cleaned records</p>
+          </article>
+          <article class="card perf-metric">
+            <p class="perf-metric-label">Average Attendance</p>
+            <p class="perf-metric-value" id="perf-attendance">—</p>
+            <p class="perf-metric-note">Across the visible students</p>
+          </article>
+          <article class="card perf-metric">
+            <p class="perf-metric-label">Average Final Marks</p>
+            <p class="perf-metric-value" id="perf-marks">—</p>
+            <p class="perf-metric-note">Mean of the visible results</p>
+          </article>
+          <article class="card perf-metric">
+            <p class="perf-metric-label">Top Performer</p>
+            <p class="perf-metric-value" id="perf-top">—</p>
+            <p class="perf-metric-note" id="perf-top-note">Highest final marks</p>
+          </article>
+        </div>
+
+        <form class="perf-filters" id="perf-filters">
+          <label for="perf-department">
+            Department
+            <select id="perf-department">
+              <option value="">All departments</option>
+            </select>
+          </label>
+          <label for="perf-min-attendance">
+            Minimum attendance
+            <select id="perf-min-attendance">
+              <option value="0">Any attendance</option>
+              <option value="75">75% or higher</option>
+              <option value="85">85% or higher</option>
+            </select>
+          </label>
+          <label for="perf-min-marks">
+            Minimum marks
+            <select id="perf-min-marks">
+              <option value="0">Any final marks</option>
+              <option value="60">60 or higher</option>
+              <option value="70">70 or higher</option>
+              <option value="80">80 or higher</option>
+            </select>
+          </label>
+        </form>
+
+        <p class="perf-count" id="perf-count" role="status">Loading student records…</p>
+
+        <div class="perf-charts">
+          <article class="card perf-panel">
+            <h3 class="perf-panel-title">Average marks by department</h3>
+            <div id="perf-bars"></div>
+          </article>
+          <article class="card perf-panel">
+            <h3 class="perf-panel-title">Attendance and final marks</h3>
+            <svg
+              id="perf-scatter"
+              class="perf-scatter"
+              viewBox="0 0 360 240"
+              role="img"
+              aria-labelledby="perf-scatter-title perf-scatter-desc"
+            >
+              <title id="perf-scatter-title">Attendance versus final marks</title>
+              <desc id="perf-scatter-desc">Each dot is one student.</desc>
+            </svg>
+            <div class="perf-legend" id="perf-legend"></div>
+          </article>
+        </div>
+
+        <article class="card perf-panel perf-table-card">
+          <h3 class="perf-panel-title">Student results</h3>
+          <p class="perf-empty" id="perf-empty" hidden>No students match these filters.</p>
+          <div class="perf-table-wrap">
+            <table class="perf-table">
+              <caption class="sr-only">
+                Filtered student performance, sorted by final marks
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Student</th>
+                  <th scope="col">Department</th>
+                  <th scope="col">Attendance</th>
+                  <th scope="col">Study hours</th>
+                  <th scope="col">Assignments</th>
+                  <th scope="col">Internal</th>
+                  <th scope="col">Final</th>
+                </tr>
+              </thead>
+              <tbody id="perf-table-body"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <p class="perf-source">
+          CSV → Pandas analysis → processed data → this view. The home page reads the cleaned
+          records from the same student performance file used in the notebook.
+        </p>
+      </section>
+
       <!-- HELP & FAQ -->
       <section class="section container" id="help-faq" aria-labelledby="faq-card-title">
         <header class="section-header">
@@ -562,8 +680,10 @@
           <h2 class="footer-title">Navigate</h2>
           <a class="footer-link" href="{% url 'home' %}#home">Home</a>
           <a class="footer-link" href="#features">Features</a>
+          <a class="footer-link" href="#performance">Performance</a>
           <a class="footer-link" href="{% url 'checkin' %}">Check-In</a>
           <a class="footer-link" href="{% url 'contact' %}">Contact</a>
+          <a class="footer-link" href="{% url 'student_portal' %}">Student Portal</a>
         </div>
 
         <div class="footer-col">
@@ -585,7 +705,48 @@
       </div>
     </footer>
 
+    <dialog class="auth-dialog" id="auth-dialog" aria-labelledby="auth-title">
+      <form class="dialog-body" id="auth-form" data-portal-url="{% url 'student_portal' %}">
+        <div>
+          <h2 id="auth-title">Sign in to Student Portal</h2>
+          <p>
+            Demo sign-in for the practical. Any name, email, and password opens the portal.
+            Student records are stored in SQLite, not in this form.
+          </p>
+        </div>
+        <div class="auth-tabs" role="tablist" aria-label="Account action">
+          <button type="button" class="auth-tab is-active" data-mode="login">Log in</button>
+          <button type="button" class="auth-tab" data-mode="signup">Sign up</button>
+        </div>
+        <div class="portal-form">
+          <div class="portal-field">
+            <label for="auth-name">Name</label>
+            <input id="auth-name" name="name" type="text" required maxlength="120" />
+          </div>
+          <div class="portal-field">
+            <label for="auth-email">Email</label>
+            <input id="auth-email" name="email" type="email" required maxlength="120" />
+          </div>
+          <div class="portal-field">
+            <label for="auth-password">Password</label>
+            <input id="auth-password" name="password" type="password" required minlength="4" />
+          </div>
+        </div>
+        <div class="dialog-actions">
+          <button type="button" class="button button--secondary" id="auth-cancel">Cancel</button>
+          <button type="submit" class="button button--primary" id="auth-submit">Log in and continue</button>
+        </div>
+      </form>
+    </dialog>
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{% static 'js/portal-auth.js' %}"></script>
+    <script>
+      document.getElementById("auth-cancel").addEventListener("click", function () {
+        document.getElementById("auth-dialog").close();
+      });
+    </script>
     <script src="{% static 'js/wellness-tips.js' %}"></script>
+    <script src="{% static 'js/performance.js' %}"></script>
   </body>
 </html>

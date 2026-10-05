@@ -1,0 +1,415 @@
+{
+  "pipeline": "CSV \u2192 Pandas analysis \u2192 processed JSON \u2192 CampusCare landing page",
+  "source_csv": "data/student_performance.csv",
+  "cleaning_notes": {
+    "missing_attendance_filled_with_median": 84.0,
+    "missing_study_hours_filled_with_median": 4.0,
+    "missing_assignments_filled_with_median": 7.0,
+    "rows_removed_missing_final_marks": 1,
+    "duplicate_rows_removed": 1
+  },
+  "summary": {
+    "total_students": 39,
+    "average_attendance": 82.18,
+    "average_final_marks": 74.56,
+    "top_performer": {
+      "student_name": "Arjun Reddy",
+      "department": "Computer Science",
+      "final_marks": 94
+    },
+    "best_department": "Computer Science",
+    "attendance_criteria_percent": 76.9
+  },
+  "records": [
+    {
+      "student_id": "STU001",
+      "student_name": "Aarav Shah",
+      "department": "Computer Science",
+      "attendance": 92,
+      "study_hours": 5.5,
+      "assignments_completed": 8,
+      "internal_marks": 38,
+      "final_marks": 86
+    },
+    {
+      "student_id": "STU002",
+      "student_name": "Diya Patel",
+      "department": "Computer Science",
+      "attendance": 88,
+      "study_hours": 4.5,
+      "assignments_completed": 8,
+      "internal_marks": 36,
+      "final_marks": 82
+    },
+    {
+      "student_id": "STU003",
+      "student_name": "Kabir Mehta",
+      "department": "Computer Science",
+      "attendance": 95,
+      "study_hours": 6.0,
+      "assignments_completed": 9,
+      "internal_marks": 40,
+      "final_marks": 91
+    },
+    {
+      "student_id": "STU004",
+      "student_name": "Ananya Iyer",
+      "department": "Computer Science",
+      "attendance": 81,
+      "study_hours": 3.5,
+      "assignments_completed": 7,
+      "internal_marks": 32,
+      "final_marks": 74
+    },
+    {
+      "student_id": "STU005",
+      "student_name": "Rohan Desai",
+      "department": "Computer Science",
+      "attendance": 76,
+      "study_hours": 3.0,
+      "assignments_completed": 6,
+      "internal_marks": 30,
+      "final_marks": 68
+    },
+    {
+      "student_id": "STU006",
+      "student_name": "Meera Nair",
+      "department": "Computer Science",
+      "attendance": 90,
+      "study_hours": 5.0,
+      "assignments_completed": 8,
+      "internal_marks": 37,
+      "final_marks": 85
+    },
+    {
+      "student_id": "STU007",
+      "student_name": "Vivaan Joshi",
+      "department": "Computer Science",
+      "attendance": 84,
+      "study_hours": 4.0,
+      "assignments_completed": 7,
+      "internal_marks": 34,
+      "final_marks": 78
+    },
+    {
+      "student_id": "STU008",
+      "student_name": "Sara Khan",
+      "department": "Computer Science",
+      "attendance": 70,
+      "study_hours": 2.5,
+      "assignments_completed": 5,
+      "internal_marks": 28,
+      "final_marks": 61
+    },
+    {
+      "student_id": "STU009",
+      "student_name": "Arjun Reddy",
+      "department": "Computer Science",
+      "attendance": 97,
+      "study_hours": 6.5,
+      "assignments_completed": 9,
+      "internal_marks": 39,
+      "final_marks": 94
+    },
+    {
+      "student_id": "STU010",
+      "student_name": "Ishita Gupta",
+      "department": "Computer Science",
+      "attendance": 79,
+      "study_hours": 3.5,
+      "assignments_completed": 7,
+      "internal_marks": 33,
+      "final_marks": 72
+    },
+    {
+      "student_id": "STU011",
+      "student_name": "Neel Kapoor",
+      "department": "Information Technology",
+      "attendance": 86,
+      "study_hours": 4.5,
+      "assignments_completed": 8,
+      "internal_marks": 35,
+      "final_marks": 80
+    },
+    {
+      "student_id": "STU012",
+      "student_name": "Pooja Verma",
+      "department": "Information Technology",
+      "attendance": 84,
+      "study_hours": 4.0,
+      "assignments_completed": 7,
+      "internal_marks": 33,
+      "final_marks": 75
+    },
+    {
+      "student_id": "STU013",
+      "student_name": "Aditya Rao",
+      "department": "Information Technology",
+      "attendance": 91,
+      "study_hours": 5.0,
+      "assignments_completed": 8,
+      "internal_marks": 37,
+      "final_marks": 84
+    },
+    {
+      "student_id": "STU014",
+      "student_name": "Kiara Bose",
+      "department": "Information Technology",
+      "attendance": 73,
+      "study_hours": 2.5,
+      "assignments_completed": 6,
+      "internal_marks": 29,
+      "final_marks": 64
+    },
+    {
+      "student_id": "STU015",
+      "student_name": "Harsh Malhotra",
+      "department": "Information Technology",
+      "attendance": 88,
+      "study_hours": 4.5,
+      "assignments_completed": 8,
+      "internal_marks": 36,
+      "final_marks": 81
+    },
+    {
+      "student_id": "STU016",
+      "student_name": "Sneha Kulkarni",
+      "department": "Information Technology",
+      "attendance": 82,
+      "study_hours": 3.5,
+      "assignments_completed": 7,
+      "internal_marks": 32,
+      "final_marks": 73
+    },
+    {
+      "student_id": "STU017",
+      "student_name": "Dev Sharma",
+      "department": "Information Technology",
+      "attendance": 67,
+      "study_hours": 2.0,
+      "assignments_completed": 5,
+      "internal_marks": 26,
+      "final_marks": 58
+    },
+    {
+      "student_id": "STU018",
+      "student_name": "Myra Singh",
+      "department": "Information Technology",
+      "attendance": 84,
+      "study_hours": 3.0,
+      "assignments_completed": 6,
+      "internal_marks": 30,
+      "final_marks": 69
+    },
+    {
+      "student_id": "STU019",
+      "student_name": "Yash Agarwal",
+      "department": "Information Technology",
+      "attendance": 94,
+      "study_hours": 5.5,
+      "assignments_completed": 9,
+      "internal_marks": 38,
+      "final_marks": 88
+    },
+    {
+      "student_id": "STU020",
+      "student_name": "Tanvi Choudhary",
+      "department": "Information Technology",
+      "attendance": 77,
+      "study_hours": 3.0,
+      "assignments_completed": 6,
+      "internal_marks": 31,
+      "final_marks": 70
+    },
+    {
+      "student_id": "STU021",
+      "student_name": "Rahul Banerjee",
+      "department": "Electronics",
+      "attendance": 85,
+      "study_hours": 4.0,
+      "assignments_completed": 7,
+      "internal_marks": 34,
+      "final_marks": 77
+    },
+    {
+      "student_id": "STU022",
+      "student_name": "Aisha Qureshi",
+      "department": "Electronics",
+      "attendance": 89,
+      "study_hours": 4.5,
+      "assignments_completed": 8,
+      "internal_marks": 35,
+      "final_marks": 82
+    },
+    {
+      "student_id": "STU023",
+      "student_name": "Nikhil Pandey",
+      "department": "Electronics",
+      "attendance": 74,
+      "study_hours": 4.0,
+      "assignments_completed": 6,
+      "internal_marks": 30,
+      "final_marks": 66
+    },
+    {
+      "student_id": "STU024",
+      "student_name": "Lavanya Krishnan",
+      "department": "Electronics",
+      "attendance": 93,
+      "study_hours": 5.5,
+      "assignments_completed": 8,
+      "internal_marks": 37,
+      "final_marks": 87
+    },
+    {
+      "student_id": "STU025",
+      "student_name": "Omkar Patil",
+      "department": "Electronics",
+      "attendance": 80,
+      "study_hours": 3.5,
+      "assignments_completed": 7,
+      "internal_marks": 32,
+      "final_marks": 71
+    },
+    {
+      "student_id": "STU026",
+      "student_name": "Rhea D'Souza",
+      "department": "Electronics",
+      "attendance": 68,
+      "study_hours": 2.0,
+      "assignments_completed": 5,
+      "internal_marks": 27,
+      "final_marks": 60
+    },
+    {
+      "student_id": "STU027",
+      "student_name": "Farhan Ali",
+      "department": "Electronics",
+      "attendance": 87,
+      "study_hours": 4.5,
+      "assignments_completed": 8,
+      "internal_marks": 35,
+      "final_marks": 79
+    },
+    {
+      "student_id": "STU028",
+      "student_name": "Saanvi Mishra",
+      "department": "Electronics",
+      "attendance": 91,
+      "study_hours": 5.0,
+      "assignments_completed": 8,
+      "internal_marks": 36,
+      "final_marks": 83
+    },
+    {
+      "student_id": "STU029",
+      "student_name": "Kunal Bhatt",
+      "department": "Electronics",
+      "attendance": 72,
+      "study_hours": 2.5,
+      "assignments_completed": 6,
+      "internal_marks": 29,
+      "final_marks": 63
+    },
+    {
+      "student_id": "STU030",
+      "student_name": "Priya Menon",
+      "department": "Electronics",
+      "attendance": 83,
+      "study_hours": 4.0,
+      "assignments_completed": 7,
+      "internal_marks": 33,
+      "final_marks": 76
+    },
+    {
+      "student_id": "STU031",
+      "student_name": "Ayaan Sheikh",
+      "department": "Mechanical",
+      "attendance": 78,
+      "study_hours": 3.0,
+      "assignments_completed": 7,
+      "internal_marks": 31,
+      "final_marks": 70
+    },
+    {
+      "student_id": "STU032",
+      "student_name": "Nisha Yadav",
+      "department": "Mechanical",
+      "attendance": 64,
+      "study_hours": 2.0,
+      "assignments_completed": 4,
+      "internal_marks": 25,
+      "final_marks": 55
+    },
+    {
+      "student_id": "STU033",
+      "student_name": "Kartik Jain",
+      "department": "Mechanical",
+      "attendance": 86,
+      "study_hours": 4.5,
+      "assignments_completed": 7,
+      "internal_marks": 34,
+      "final_marks": 78
+    },
+    {
+      "student_id": "STU034",
+      "student_name": "Anika Paul",
+      "department": "Mechanical",
+      "attendance": 90,
+      "study_hours": 5.0,
+      "assignments_completed": 8,
+      "internal_marks": 36,
+      "final_marks": 84
+    },
+    {
+      "student_id": "STU035",
+      "student_name": "Rudra Chauhan",
+      "department": "Mechanical",
+      "attendance": 71,
+      "study_hours": 2.5,
+      "assignments_completed": 5,
+      "internal_marks": 28,
+      "final_marks": 62
+    },
+    {
+      "student_id": "STU037",
+      "student_name": "Veer Saxena",
+      "department": "Mechanical",
+      "attendance": 75,
+      "study_hours": 3.0,
+      "assignments_completed": 6,
+      "internal_marks": 30,
+      "final_marks": 67
+    },
+    {
+      "student_id": "STU038",
+      "student_name": "Zoya Hussain",
+      "department": "Mechanical",
+      "attendance": 88,
+      "study_hours": 4.5,
+      "assignments_completed": 8,
+      "internal_marks": 35,
+      "final_marks": 80
+    },
+    {
+      "student_id": "STU039",
+      "student_name": "Manav Trivedi",
+      "department": "Mechanical",
+      "attendance": 69,
+      "study_hours": 2.0,
+      "assignments_completed": 5,
+      "internal_marks": 27,
+      "final_marks": 59
+    },
+    {
+      "student_id": "STU040",
+      "student_name": "Ira Fernandes",
+      "department": "Mechanical",
+      "attendance": 84,
+      "study_hours": 4.0,
+      "assignments_completed": 7,
+      "internal_marks": 33,
+      "final_marks": 76
+    }
+  ]
+}

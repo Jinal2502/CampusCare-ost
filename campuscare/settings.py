@@ -78,9 +78,15 @@ WSGI_APPLICATION = 'campuscare.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+#
+# Local default is SQLite so the site runs on macOS without Neon/Postgres.
+# Practical 9 student records are always in database/students.db (sqlite3).
+# Set USE_POSTGRES=1 to use DATABASE_URL instead.
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
-if DATABASE_URL:
+USE_POSTGRES = os.environ.get("USE_POSTGRES", "").lower() in ("1", "true", "yes")
+
+if USE_POSTGRES and DATABASE_URL:
     DATABASES = {
         "default": dj_database_url.parse(
             DATABASE_URL,

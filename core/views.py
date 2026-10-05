@@ -13,6 +13,7 @@ from django.views.decorators.http import require_http_methods
 
 from .forms import ContactForm
 from .models import Student, WellnessCheckin
+from .sqlite_portal import students_collection, students_item
 
 IST = ZoneInfo("Asia/Kolkata")
 EMAIL_RE = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
@@ -45,6 +46,10 @@ def faq_asset(request, filename):
     if not path.is_file():
         raise Http404()
     return FileResponse(path.open("rb"), content_type="text/css")
+
+
+def student_portal(request):
+    return render(request, "core/student_portal.html")
 
 
 def contact(request):

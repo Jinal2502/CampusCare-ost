@@ -11,6 +11,10 @@ urlpatterns = [
     path("checkin/", views.checkin, name="checkin"),
     path("checkin.html", RedirectView.as_view(pattern_name="checkin", permanent=False)),
     path("contact/", views.contact, name="contact"),
+    path("student-portal/", views.student_portal, name="student_portal"),
+    # Practical 9 SQLite CRUD (same paths as Flask backend/app.py)
+    path("students", views.students_collection, name="portal_students"),
+    path("students/<int:student_id>", views.students_item, name="portal_student"),
     path("faq/", views.faq, name="faq"),
     path("faq/<str:filename>", views.faq_asset, name="faq_asset"),
     # No trailing slash — frontend fetch() uses /api/students and /api/checkins
